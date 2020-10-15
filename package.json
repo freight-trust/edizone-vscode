@@ -1,0 +1,140 @@
+{
+  "name": "freight-trust-edi",
+  "displayName": "Freight Trust EDI",
+  "publisher": "freight-trust",
+  "description": "EDI X12/EDIFACT Tools",
+  "author": {
+    "name": "Freight Trust",
+    "url": "https://freighttrust.com"
+  },
+  "bugs": {
+    "url": "https://github.com/sambacha/vscode-edi-ts/issues"
+  },
+  "homepage": "https://github.com/sambacha/vscode-edi-ts#readme",
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "smart-contracts",
+    "edifact",
+    "edi",
+    "asc x12"
+  ],
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sambacha/vscode-edi-ts"
+  },
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./src/Extension",
+  "contributes": {
+    "commands": [
+      {
+        "title": "X12: Edit Document",
+        "command": "ediq.x12.editDocument"
+      },
+      {
+        "title": "X12: Query Document",
+        "command": "ediq.x12.queryDocument"
+      }
+    ],
+    "configuration": {
+      "title": "Freight Trust EDI Channel Configuration",
+      "type": "object",
+      "properties": {
+        "toolkit.core": {
+          "type": "object",
+          "default": {
+            "ssoActiveTokenUri": "https://freight-trust.auth0.com/oauth/ro",
+            "ssoClientId": "8HiZztL5FMfYljkbs2KbuWeoDW4H1clp"
+          },
+          "description": "Core Module Configuration",
+          "properties": {
+            "ssoActiveTokenUri": {
+              "type": "string",
+              "description": "The base URI used to actively obtain access tokens."
+            },
+            "ssoClientId": {
+              "type": "string",
+              "description": "The client_id to use when communicating with the SSO endpoint."
+            }
+          }
+        },
+        "toolkit.x12": {
+          "type": "object",
+          "default": {
+            "eppServiceUri": "http://epp.freighttrust.io",
+            "formatX12OnOpen": true
+          },
+          "description": "X12 Module Configuration",
+          "properties": {
+            "eppServiceUri": {
+              "type": "string",
+              "description": "The base URI used to call the EPP service."
+            },
+            "formatX12OnOpen": {
+              "type": "boolean",
+              "description": "Determines if X12 documents should be auto-formatted when they are opened."
+            }
+          }
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "ediq.x12.queryDocument",
+        "key": "CTRL+SHIFT+T Q",
+        "when": "editorTextFocus"
+      }
+    ],
+    "languages": [
+      {
+        "id": "x12",
+        "aliases": [
+          "X12"
+        ],
+        "extensions": [
+          ".txt",
+          ".edi"
+        ],
+        "firstLine": "\\s*ISA.+"
+      }
+    ]
+  },
+  "activationEvents": [
+    "*"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.27",
+    "@types/vscode": "^1.50.0",
+    "eslint": "^7.6.0",
+    "glob": "^7.1.6",
+    "gulp": "^4.0.0",
+    "gulp-shell": "^0.8.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "mocha": "^8.0.1",
+    "tslint": "^6.1.3",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^4.0.3",
+    "vscode-test": "^1.4.0"
+  },
+  "dependencies": {
+    "node-x12": "^1.6.2",
+    "request": "^2.88.2"
+  }
+}
