@@ -27,7 +27,7 @@
     "type": "git",
     "url": "https://github.com/sambacha/vscode-edi-ts"
   },
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "vscode": "^1.50.0"
   },
